@@ -1,5 +1,9 @@
 #include <iostream>
 #include <vector>
+#include <string.h>
+#include <time.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -8,7 +12,7 @@ vector<T> plus_longues_sous_chaines(const T& str1,const T& str2)
 {
     unsigned int size_str1 = str1.size();
     unsigned int size_str2 = str2.size();
-    unsigned int size_max_find = 0;
+    int size_max_find = 0;
 
 
     vector<T> solutions; //juste la fleme de le faire en c
@@ -33,11 +37,11 @@ vector<T> plus_longues_sous_chaines(const T& str1,const T& str2)
                 {
                     solutions.clear();//on vide tout
                     size_max_find = size_find;
-                    solutions.emplace_back(str1.begin()+i1,str1.begin()+inc1+i1);// str[i1] ... str1[inc1-1] exclu
+                    solutions.emplace_back(str1.begin()+i1,str1.begin()+inc1);// str[i1] ... str1[inc1-1] exclu
                 }
                 else if (size_find == size_max_find) // on ajoute
                 {
-                    solutions.emplace_back(str1.begin()+i1,str1.begin()+inc1+i1);// str[i1] ... str1[inc1-1] exclu
+                    solutions.emplace_back(str1.begin()+i1,str1.begin()+inc1);// str[i1] ... str1[inc1-1] exclu
                 }
             }
         }
@@ -45,10 +49,52 @@ vector<T> plus_longues_sous_chaines(const T& str1,const T& str2)
     return solutions;
 }
 
+int rand_a_b(int a, int b){
+	return (rand()/float(RAND_MAX))*(b-a)+a;
+}
+
+char *randChaine(int minLength, int maxLength)
+{
+	int i = 0, stop = 0;
+	char *chaineRand = new char[maxLength];
+
+	while(i < maxLength && stop == 0)
+	{	
+		if(i > minLength)
+			if(rand_a_b(0, 100) > 95)
+				stop = 1;
+
+
+		chaineRand[i] = rand_a_b(97, 122);;
+
+		++i;
+	}
+
+	chaineRand[i] = '\0';
+
+	return chaineRand;
+}
+
 int main(int argc,char* argv[])
 {
-    vector<string> res = plus_longues_sous_chaines<string>("testestest","geshestatestesta");
+    srand(time(NULL));
+
+    char * c_str1 = randChaine(100,1000);
+    char * c_str2 = randChaine(100,1000);
+    string str1(c_str1);
+    string str2(c_str2);
+
+    free(c_str1);
+    free(c_str2);
+
+    cout<<"str1: "<<str1<<endl;
+    cout<<"str2: "<<str2<<endl;
+
+
+    vector<string> res = plus_longues_sous_chaines<string>(str1,str2);
+    cout<<"solution"<<endl;
     for(auto s:res)
         cout<<s<<endl;
     return 0;
+
 }
