@@ -3,11 +3,10 @@ cpp-plus-longue-sous-chaine-commune
 
 une simple algo qui cherche la plus longue sous chaine commune
 
-La fonction est un template:
+La fonction est un template::
 
-
-template<class T>
-vector<T> plus_longues_sous_chaines(const T& str1,const T& str2);
+    template<class T>
+    vector<T> plus_longues_sous_chaines(const T& str1,const T& str2);
 
 Avec T qui doit avoir les fonction suivante::
 
