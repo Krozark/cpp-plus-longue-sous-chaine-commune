@@ -3,14 +3,15 @@
 
 using namespace std;
 
-vector<string> plus_longues_sous_chaines(const string str1,const string str2)
+template<class T>
+vector<T> plus_longues_sous_chaines(const T& str1,const T& str2)
 {
     unsigned int size_str1 = str1.size();
     unsigned int size_str2 = str2.size();
     unsigned int size_max_find = 0;
 
 
-    vector<string> solutions; //juste la fleme de le faire en c
+    vector<T> solutions; //juste la fleme de le faire en c
 
     for(int i1=0;i1<size_str1;++i1) //loop sur la 1er chaine
     {
@@ -46,7 +47,7 @@ vector<string> plus_longues_sous_chaines(const string str1,const string str2)
 
 int main(int argc,char* argv[])
 {
-    vector<string> res = plus_longues_sous_chaines("testestest","geshestatestesta");
+    vector<string> res = plus_longues_sous_chaines<string>("testestest","geshestatestesta");
     for(auto s:res)
         cout<<s<<endl;
     return 0;
