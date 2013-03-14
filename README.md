@@ -14,7 +14,7 @@ Avec T qui doit avoir les fonction suivante::
     T.begin() et T.end()
     un constructeur T(T::iterator,T::iterator)
     et les operateurs:
-        operator [](int)
-        bool operator == (T& other)
+        B T.operator [](int)
+        bool B.operator == (B& other)
 
 Fonctionne nativement avec les strings par exemple
